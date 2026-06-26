@@ -20,6 +20,7 @@ import { Route as ErpStockRouteImport } from './routes/erp/stock'
 import { Route as ErpProfileRouteImport } from './routes/erp/profile'
 import { Route as ErpMessagesRouteImport } from './routes/erp/messages'
 import { Route as ErpLogistiqueRouteImport } from './routes/erp/logistique'
+import { Route as ErpInsightsRouteImport } from './routes/erp/insights'
 import { Route as ErpFinanceRouteImport } from './routes/erp/finance'
 import { Route as ErpFacturesRouteImport } from './routes/erp/factures'
 import { Route as ErpEmployesRouteImport } from './routes/erp/employes'
@@ -83,6 +84,11 @@ const ErpLogistiqueRoute = ErpLogistiqueRouteImport.update({
   path: '/logistique',
   getParentRoute: () => ErpRouteRoute,
 } as any)
+const ErpInsightsRoute = ErpInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
 const ErpFinanceRoute = ErpFinanceRouteImport.update({
   id: '/finance',
   path: '/finance',
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/erp/employes': typeof ErpEmployesRoute
   '/erp/factures': typeof ErpFacturesRoute
   '/erp/finance': typeof ErpFinanceRoute
+  '/erp/insights': typeof ErpInsightsRoute
   '/erp/logistique': typeof ErpLogistiqueRoute
   '/erp/messages': typeof ErpMessagesRoute
   '/erp/profile': typeof ErpProfileRoute
@@ -151,6 +158,7 @@ export interface FileRoutesByTo {
   '/erp/employes': typeof ErpEmployesRoute
   '/erp/factures': typeof ErpFacturesRoute
   '/erp/finance': typeof ErpFinanceRoute
+  '/erp/insights': typeof ErpInsightsRoute
   '/erp/logistique': typeof ErpLogistiqueRoute
   '/erp/messages': typeof ErpMessagesRoute
   '/erp/profile': typeof ErpProfileRoute
@@ -172,6 +180,7 @@ export interface FileRoutesById {
   '/erp/employes': typeof ErpEmployesRoute
   '/erp/factures': typeof ErpFacturesRoute
   '/erp/finance': typeof ErpFinanceRoute
+  '/erp/insights': typeof ErpInsightsRoute
   '/erp/logistique': typeof ErpLogistiqueRoute
   '/erp/messages': typeof ErpMessagesRoute
   '/erp/profile': typeof ErpProfileRoute
@@ -194,6 +203,7 @@ export interface FileRouteTypes {
     | '/erp/employes'
     | '/erp/factures'
     | '/erp/finance'
+    | '/erp/insights'
     | '/erp/logistique'
     | '/erp/messages'
     | '/erp/profile'
@@ -213,6 +223,7 @@ export interface FileRouteTypes {
     | '/erp/employes'
     | '/erp/factures'
     | '/erp/finance'
+    | '/erp/insights'
     | '/erp/logistique'
     | '/erp/messages'
     | '/erp/profile'
@@ -233,6 +244,7 @@ export interface FileRouteTypes {
     | '/erp/employes'
     | '/erp/factures'
     | '/erp/finance'
+    | '/erp/insights'
     | '/erp/logistique'
     | '/erp/messages'
     | '/erp/profile'
@@ -330,6 +342,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ErpLogistiqueRouteImport
       parentRoute: typeof ErpRouteRoute
     }
+    '/erp/insights': {
+      id: '/erp/insights'
+      path: '/insights'
+      fullPath: '/erp/insights'
+      preLoaderRoute: typeof ErpInsightsRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
     '/erp/finance': {
       id: '/erp/finance'
       path: '/finance'
@@ -389,6 +408,7 @@ interface ErpRouteRouteChildren {
   ErpEmployesRoute: typeof ErpEmployesRoute
   ErpFacturesRoute: typeof ErpFacturesRoute
   ErpFinanceRoute: typeof ErpFinanceRoute
+  ErpInsightsRoute: typeof ErpInsightsRoute
   ErpLogistiqueRoute: typeof ErpLogistiqueRoute
   ErpMessagesRoute: typeof ErpMessagesRoute
   ErpProfileRoute: typeof ErpProfileRoute
@@ -403,6 +423,7 @@ const ErpRouteRouteChildren: ErpRouteRouteChildren = {
   ErpEmployesRoute: ErpEmployesRoute,
   ErpFacturesRoute: ErpFacturesRoute,
   ErpFinanceRoute: ErpFinanceRoute,
+  ErpInsightsRoute: ErpInsightsRoute,
   ErpLogistiqueRoute: ErpLogistiqueRoute,
   ErpMessagesRoute: ErpMessagesRoute,
   ErpProfileRoute: ErpProfileRoute,
