@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Package, ShoppingCart, Warehouse, Truck, Users,
   FileText, Wallet, UserCog, MessageSquare, Bell, Menu, ChevronLeft,
   User as UserIcon, AlertTriangle, Search, Sparkles, MessagesSquare,
-
+  StickyNote,
 } from "lucide-react";
 
 type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; roles: Role[] };
