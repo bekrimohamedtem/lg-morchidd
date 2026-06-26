@@ -33,21 +33,36 @@ const iso = (d: Date) => d.toISOString();
 const days = (n: number) => { const d = new Date(today); d.setDate(d.getDate() - n); return d; };
 
 export const seedOrders: Order[] = [
-  {
-    id: uid("o", 1), ref: "CMD-2026-0001", client: seedClients[0], items: [{ productId: "p-001", quantity: 1 }, { productId: "p-007", quantity: 1 }],
-    commercialId: "e-001", status: "Livré", createdAt: iso(days(5)),
-    total: 249000 + 79000, totalInitial: 180000 + 55000,
-  },
-  {
-    id: uid("o", 2), ref: "CMD-2026-0002", client: seedClients[1], items: [{ productId: "p-003", quantity: 2 }],
-    commercialId: "e-002", status: "En cours de livraison", createdAt: iso(days(2)),
-    total: 159000 * 2, totalInitial: 110000 * 2,
-  },
-  {
-    id: uid("o", 3), ref: "CMD-2026-0003", client: seedClients[2], items: [{ productId: "p-005", quantity: 1 }],
-    commercialId: "e-001", status: "En attente", createdAt: iso(days(0)),
-    total: 94000, totalInitial: 65000,
-  },
+  { id: uid("o", 1), ref: "CMD-2026-0001", client: seedClients[0], items: [{ productId: "p-001", quantity: 1 }, { productId: "p-007", quantity: 1 }],
+    commercialId: "e-001", status: "Livré", createdAt: iso(days(28)),
+    total: 249000 + 79000, totalInitial: 180000 + 55000 },
+  { id: uid("o", 2), ref: "CMD-2026-0002", client: seedClients[1], items: [{ productId: "p-003", quantity: 2 }],
+    commercialId: "e-002", status: "Livré", createdAt: iso(days(25)),
+    total: 159000 * 2, totalInitial: 110000 * 2 },
+  { id: uid("o", 3), ref: "CMD-2026-0003", client: seedClients[2], items: [{ productId: "p-005", quantity: 1 }],
+    commercialId: "e-001", status: "Livré", createdAt: iso(days(21)),
+    total: 94000, totalInitial: 65000 },
+  { id: uid("o", 4), ref: "CMD-2026-0004", client: seedClients[0], items: [{ productId: "p-002", quantity: 1 }],
+    commercialId: "e-002", status: "Livré", createdAt: iso(days(18)),
+    total: 129000, totalInitial: 90000 },
+  { id: uid("o", 5), ref: "CMD-2026-0005", client: seedClients[1], items: [{ productId: "p-008", quantity: 2 }],
+    commercialId: "e-001", status: "Livré", createdAt: iso(days(14)),
+    total: 139000 * 2, totalInitial: 95000 * 2 },
+  { id: uid("o", 6), ref: "CMD-2026-0006", client: seedClients[2], items: [{ productId: "p-005", quantity: 1 }, { productId: "p-007", quantity: 1 }],
+    commercialId: "e-002", status: "Livré", createdAt: iso(days(10)),
+    total: 94000 + 79000, totalInitial: 65000 + 55000 },
+  { id: uid("o", 7), ref: "CMD-2026-0007", client: seedClients[0], items: [{ productId: "p-001", quantity: 1 }],
+    commercialId: "e-001", status: "Livré", createdAt: iso(days(7)),
+    total: 249000, totalInitial: 180000 },
+  { id: uid("o", 8), ref: "CMD-2026-0008", client: seedClients[1], items: [{ productId: "p-003", quantity: 1 }],
+    commercialId: "e-002", status: "En cours de livraison", createdAt: iso(days(4)),
+    total: 159000, totalInitial: 110000 },
+  { id: uid("o", 9), ref: "CMD-2026-0009", client: seedClients[2], items: [{ productId: "p-005", quantity: 2 }],
+    commercialId: "e-001", status: "En cours de livraison", createdAt: iso(days(2)),
+    total: 94000 * 2, totalInitial: 65000 * 2 },
+  { id: uid("o", 10), ref: "CMD-2026-0010", client: seedClients[0], items: [{ productId: "p-007", quantity: 1 }],
+    commercialId: "e-002", status: "En attente", createdAt: iso(days(0)),
+    total: 79000, totalInitial: 55000 },
 ];
 
 export const seedMovements: Movement[] = [
