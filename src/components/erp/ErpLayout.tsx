@@ -23,7 +23,7 @@ const NAV: NavItem[] = [
   { to: "/erp/insights", label: "Savoir plus (IA)", icon: Sparkles, roles: ["comptable", "admin"] },
   { to: "/erp/employes", label: "Employés", icon: UserCog, roles: ["admin"] },
   { to: "/erp/chat", label: "Chat", icon: MessagesSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
-  { to: "/erp/messages", label: "Notes supérieures", icon: MessageSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
+  { to: "/erp/messages", label: "Notes supérieures", icon: StickyNote, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
   { to: "/erp/profile", label: "Profil", icon: UserIcon, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
 
 ];
