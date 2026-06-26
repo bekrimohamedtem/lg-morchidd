@@ -33,7 +33,7 @@ type Actions = {
   upsertClient: (c: Client) => void;
   deleteClient: (id: string) => void;
   // orders
-  addOrder: (clientId: string, items: OrderItem[], commercialId: string) => Order | null;
+  addOrder: (clientId: string, items: OrderItem[], commercialId: string, channel?: "site" | "showroom") => Order | null;
   setOrderStatus: (id: string, s: Order["status"]) => void;
   // employees
   upsertEmployee: (e: Employee) => void;
@@ -87,7 +87,7 @@ export const useErp = create<State & Actions>()(
         })),
       deleteClient: (id) => set((st) => ({ clients: st.clients.filter((c) => c.id !== id) })),
 
-      addOrder: (clientId, items, commercialId) => {
+      addOrder: (clientId, items, commercialId, channel = "showroom") => {
         const st = get();
         const client = st.clients.find((c) => c.id === clientId);
         if (!client) return null;
@@ -102,7 +102,7 @@ export const useErp = create<State & Actions>()(
           id: newId(),
           ref: `CMD-${new Date().getFullYear()}-${String(st.orders.length + 1).padStart(4, "0")}`,
           client, items, commercialId, status: "En attente",
-          createdAt: new Date().toISOString(), total, totalInitial,
+          createdAt: new Date().toISOString(), total, totalInitial, channel,
         };
         set({
           orders: [order, ...st.orders],
