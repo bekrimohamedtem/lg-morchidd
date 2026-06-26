@@ -146,10 +146,19 @@ export const useErp = create<State & Actions>()(
         set((st) => ({
           messages: [{ id: newId(), date: new Date().toISOString(), ...m }, ...st.messages],
         })),
+
+      sendChat: (conversationId, senderId, body) =>
+        set((st) => ({
+          chats: [
+            ...st.chats,
+            { id: newId(), conversationId, senderId, body, date: new Date().toISOString() },
+          ],
+        })),
     }),
-    { name: "lg-morchid-erp", version: 1, storage: createJSONStorage(ssrSafeStorage), skipHydration: true },
+    { name: "lg-morchid-erp", version: 2, storage: createJSONStorage(ssrSafeStorage), skipHydration: true },
   ),
 );
+
 
 export const fmtDA = (n: number) =>
   new Intl.NumberFormat("fr-DZ", { style: "currency", currency: "DZD", maximumFractionDigits: 0 }).format(n);
