@@ -62,6 +62,11 @@ export const useErp = create<State & Actions>()(
       movements: seedMovements,
       notifications: [],
       messages: seedMessages,
+      chats: [
+        { id: "seed-c1", conversationId: "group", senderId: "e-006", body: "Bienvenue dans le chat d'équipe LG-morchid 👋", date: new Date(Date.now() - 86400000).toISOString() },
+        { id: "seed-c2", conversationId: "group", senderId: "e-001", body: "Bonjour à tous, prêts pour la semaine !", date: new Date(Date.now() - 3600000).toISOString() },
+      ],
+
 
       setRole: (role) => set({ role }),
 
