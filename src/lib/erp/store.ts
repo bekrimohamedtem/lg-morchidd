@@ -8,7 +8,7 @@ const ssrSafeStorage = () => {
   return window.localStorage;
 };
 import type {
-  Role, StockItem, Client, Order, Employee, Movement, Notification, AdminMessage, OrderItem,
+  Role, StockItem, Client, Order, Employee, Movement, Notification, AdminMessage, OrderItem, ChatMessage,
 } from "./types";
 import { seedStock, seedClients, seedOrders, seedEmployees, seedMovements, seedMessages } from "./seed";
 
@@ -21,6 +21,7 @@ type State = {
   movements: Movement[];
   notifications: Notification[];
   messages: AdminMessage[];
+  chats: ChatMessage[];
 };
 
 type Actions = {
@@ -41,9 +42,12 @@ type Actions = {
   // notif
   pushNotification: (n: Omit<Notification, "id" | "date" | "read">) => void;
   markAllRead: () => void;
-  // messages
+  // messages (notes supérieures)
   addMessage: (m: Omit<AdminMessage, "id" | "date">) => void;
+  // chat
+  sendChat: (conversationId: string, senderId: string, body: string) => void;
 };
+
 
 const newId = () => Math.random().toString(36).slice(2, 10);
 
