@@ -38,10 +38,11 @@ export type Order = {
   client: Client;
   items: OrderItem[];
   commercialId: string;
-  status: "En attente" | "En cours de livraison" | "Livré";
+  status: "En attente" | "En cours de livraison" | "Livré" | "Retourné";
   createdAt: string;
   total: number;
   totalInitial: number;
+  channel: "site" | "showroom";
 };
 
 export type Employee = {
