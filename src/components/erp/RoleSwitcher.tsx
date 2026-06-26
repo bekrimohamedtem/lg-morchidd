@@ -11,10 +11,20 @@ export function RoleSwitcher() {
 
   const onChange = (r: Role) => {
     setRole(r);
-    if (r === "user" && pathname.startsWith("/erp")) {
-      navigate({ to: "/" });
-    } else if (r !== "user" && !pathname.startsWith("/erp")) {
-      navigate({ to: "/erp" });
+    if (r === "user") {
+      if (pathname.startsWith("/erp")) {
+        navigate({ to: "/" });
+      }
+    } else {
+      const defaultRoutes: Record<Role, string> = {
+        user: "/",
+        admin: "/erp",
+        comptable: "/erp",
+        commercial: "/erp/stock",
+        depot: "/erp/stock",
+        vendeur: "/erp/commandes"
+      };
+      navigate({ to: defaultRoutes[r] as any });
     }
   };
 

@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useMemo, useEffect } from "react";
 import { useErp, fmtDA } from "@/lib/erp/store";
 import {
   Package, ShoppingCart, Users, Wallet, TrendingUp, AlertTriangle,
@@ -16,6 +16,26 @@ export const Route = createFileRoute("/erp/")({
 
 function Dashboard() {
   const { stock, orders, clients, role, employees } = useErp();
+  const navigate = useNavigate();
+
+  const dashboardRoles = ["comptable", "admin"];
+  const hasAccess = dashboardRoles.includes(role);
+
+  useEffect(() => {
+    if (!hasAccess) {
+      if (role === "commercial" || role === "depot") {
+        navigate({ to: "/erp/stock" });
+      } else if (role === "vendeur") {
+        navigate({ to: "/erp/commandes" });
+      } else {
+        navigate({ to: "/" });
+      }
+    }
+  }, [role, hasAccess, navigate]);
+
+  if (!hasAccess) {
+    return null;
+  }
 
   const ca = orders.reduce((s, o) => s + o.total, 0);
   const benef = orders.reduce((s, o) => s + (o.total - o.totalInitial), 0);
