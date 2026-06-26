@@ -27,6 +27,7 @@ import { Route as ErpEmployesRouteImport } from './routes/erp/employes'
 import { Route as ErpDepotRouteImport } from './routes/erp/depot'
 import { Route as ErpCommandesRouteImport } from './routes/erp/commandes'
 import { Route as ErpClientsRouteImport } from './routes/erp/clients'
+import { Route as ErpChatRouteImport } from './routes/erp/chat'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 
 const CartRoute = CartRouteImport.update({
@@ -119,6 +120,11 @@ const ErpClientsRoute = ErpClientsRouteImport.update({
   path: '/clients',
   getParentRoute: () => ErpRouteRoute,
 } as any)
+const ErpChatRoute = ErpChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/erp/chat': typeof ErpChatRoute
   '/erp/clients': typeof ErpClientsRoute
   '/erp/commandes': typeof ErpCommandesRoute
   '/erp/depot': typeof ErpDepotRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/erp/chat': typeof ErpChatRoute
   '/erp/clients': typeof ErpClientsRoute
   '/erp/commandes': typeof ErpCommandesRoute
   '/erp/depot': typeof ErpDepotRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/erp/chat': typeof ErpChatRoute
   '/erp/clients': typeof ErpClientsRoute
   '/erp/commandes': typeof ErpCommandesRoute
   '/erp/depot': typeof ErpDepotRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/category/$slug'
+    | '/erp/chat'
     | '/erp/clients'
     | '/erp/commandes'
     | '/erp/depot'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/category/$slug'
+    | '/erp/chat'
     | '/erp/clients'
     | '/erp/commandes'
     | '/erp/depot'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/category/$slug'
+    | '/erp/chat'
     | '/erp/clients'
     | '/erp/commandes'
     | '/erp/depot'
@@ -391,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ErpClientsRouteImport
       parentRoute: typeof ErpRouteRoute
     }
+    '/erp/chat': {
+      id: '/erp/chat'
+      path: '/chat'
+      fullPath: '/erp/chat'
+      preLoaderRoute: typeof ErpChatRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
     '/category/$slug': {
       id: '/category/$slug'
       path: '/category/$slug'
@@ -402,6 +421,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface ErpRouteRouteChildren {
+  ErpChatRoute: typeof ErpChatRoute
   ErpClientsRoute: typeof ErpClientsRoute
   ErpCommandesRoute: typeof ErpCommandesRoute
   ErpDepotRoute: typeof ErpDepotRoute
@@ -417,6 +437,7 @@ interface ErpRouteRouteChildren {
 }
 
 const ErpRouteRouteChildren: ErpRouteRouteChildren = {
+  ErpChatRoute: ErpChatRoute,
   ErpClientsRoute: ErpClientsRoute,
   ErpCommandesRoute: ErpCommandesRoute,
   ErpDepotRoute: ErpDepotRoute,

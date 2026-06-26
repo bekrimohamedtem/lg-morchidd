@@ -5,7 +5,8 @@ import { ROLES, type Role } from "@/lib/erp/types";
 import {
   LayoutDashboard, Package, ShoppingCart, Warehouse, Truck, Users,
   FileText, Wallet, UserCog, MessageSquare, Bell, Menu, ChevronLeft,
-  User as UserIcon, AlertTriangle, Search, Sparkles,
+  User as UserIcon, AlertTriangle, Search, Sparkles, MessagesSquare,
+
 } from "lucide-react";
 
 type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; roles: Role[] };
