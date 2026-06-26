@@ -9,38 +9,278 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as ErpRouteRouteImport } from './routes/erp/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ErpIndexRouteImport } from './routes/erp/index'
+import { Route as ProductSlugRouteImport } from './routes/product.$slug'
+import { Route as ErpStockRouteImport } from './routes/erp/stock'
+import { Route as ErpProfileRouteImport } from './routes/erp/profile'
+import { Route as ErpMessagesRouteImport } from './routes/erp/messages'
+import { Route as ErpLogistiqueRouteImport } from './routes/erp/logistique'
+import { Route as ErpFinanceRouteImport } from './routes/erp/finance'
+import { Route as ErpFacturesRouteImport } from './routes/erp/factures'
+import { Route as ErpEmployesRouteImport } from './routes/erp/employes'
+import { Route as ErpDepotRouteImport } from './routes/erp/depot'
+import { Route as ErpCommandesRouteImport } from './routes/erp/commandes'
+import { Route as ErpClientsRouteImport } from './routes/erp/clients'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErpRouteRoute = ErpRouteRouteImport.update({
+  id: '/erp',
+  path: '/erp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ErpIndexRoute = ErpIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ProductSlugRoute = ProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErpStockRoute = ErpStockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpProfileRoute = ErpProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpMessagesRoute = ErpMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpLogistiqueRoute = ErpLogistiqueRouteImport.update({
+  id: '/logistique',
+  path: '/logistique',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpFinanceRoute = ErpFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpFacturesRoute = ErpFacturesRouteImport.update({
+  id: '/factures',
+  path: '/factures',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpEmployesRoute = ErpEmployesRouteImport.update({
+  id: '/employes',
+  path: '/employes',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpDepotRoute = ErpDepotRouteImport.update({
+  id: '/depot',
+  path: '/depot',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpCommandesRoute = ErpCommandesRouteImport.update({
+  id: '/commandes',
+  path: '/commandes',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const ErpClientsRoute = ErpClientsRouteImport.update({
+  id: '/clients',
+  path: '/clients',
+  getParentRoute: () => ErpRouteRoute,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/erp': typeof ErpRouteRouteWithChildren
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/erp/clients': typeof ErpClientsRoute
+  '/erp/commandes': typeof ErpCommandesRoute
+  '/erp/depot': typeof ErpDepotRoute
+  '/erp/employes': typeof ErpEmployesRoute
+  '/erp/factures': typeof ErpFacturesRoute
+  '/erp/finance': typeof ErpFinanceRoute
+  '/erp/logistique': typeof ErpLogistiqueRoute
+  '/erp/messages': typeof ErpMessagesRoute
+  '/erp/profile': typeof ErpProfileRoute
+  '/erp/stock': typeof ErpStockRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/erp/': typeof ErpIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/erp/clients': typeof ErpClientsRoute
+  '/erp/commandes': typeof ErpCommandesRoute
+  '/erp/depot': typeof ErpDepotRoute
+  '/erp/employes': typeof ErpEmployesRoute
+  '/erp/factures': typeof ErpFacturesRoute
+  '/erp/finance': typeof ErpFinanceRoute
+  '/erp/logistique': typeof ErpLogistiqueRoute
+  '/erp/messages': typeof ErpMessagesRoute
+  '/erp/profile': typeof ErpProfileRoute
+  '/erp/stock': typeof ErpStockRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/erp': typeof ErpIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/erp': typeof ErpRouteRouteWithChildren
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/category/$slug': typeof CategorySlugRoute
+  '/erp/clients': typeof ErpClientsRoute
+  '/erp/commandes': typeof ErpCommandesRoute
+  '/erp/depot': typeof ErpDepotRoute
+  '/erp/employes': typeof ErpEmployesRoute
+  '/erp/factures': typeof ErpFacturesRoute
+  '/erp/finance': typeof ErpFinanceRoute
+  '/erp/logistique': typeof ErpLogistiqueRoute
+  '/erp/messages': typeof ErpMessagesRoute
+  '/erp/profile': typeof ErpProfileRoute
+  '/erp/stock': typeof ErpStockRoute
+  '/product/$slug': typeof ProductSlugRoute
+  '/erp/': typeof ErpIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/erp'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/category/$slug'
+    | '/erp/clients'
+    | '/erp/commandes'
+    | '/erp/depot'
+    | '/erp/employes'
+    | '/erp/factures'
+    | '/erp/finance'
+    | '/erp/logistique'
+    | '/erp/messages'
+    | '/erp/profile'
+    | '/erp/stock'
+    | '/product/$slug'
+    | '/erp/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/category/$slug'
+    | '/erp/clients'
+    | '/erp/commandes'
+    | '/erp/depot'
+    | '/erp/employes'
+    | '/erp/factures'
+    | '/erp/finance'
+    | '/erp/logistique'
+    | '/erp/messages'
+    | '/erp/profile'
+    | '/erp/stock'
+    | '/product/$slug'
+    | '/erp'
+  id:
+    | '__root__'
+    | '/'
+    | '/erp'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/category/$slug'
+    | '/erp/clients'
+    | '/erp/commandes'
+    | '/erp/depot'
+    | '/erp/employes'
+    | '/erp/factures'
+    | '/erp/finance'
+    | '/erp/logistique'
+    | '/erp/messages'
+    | '/erp/profile'
+    | '/erp/stock'
+    | '/product/$slug'
+    | '/erp/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ErpRouteRoute: typeof ErpRouteRouteWithChildren
+  AccountRoute: typeof AccountRoute
+  AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
+  CategorySlugRoute: typeof CategorySlugRoute
+  ProductSlugRoute: typeof ProductSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/erp': {
+      id: '/erp'
+      path: '/erp'
+      fullPath: '/erp'
+      preLoaderRoute: typeof ErpRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +288,141 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/erp/': {
+      id: '/erp/'
+      path: '/'
+      fullPath: '/erp/'
+      preLoaderRoute: typeof ErpIndexRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/product/$slug': {
+      id: '/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/product/$slug'
+      preLoaderRoute: typeof ProductSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/erp/stock': {
+      id: '/erp/stock'
+      path: '/stock'
+      fullPath: '/erp/stock'
+      preLoaderRoute: typeof ErpStockRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/profile': {
+      id: '/erp/profile'
+      path: '/profile'
+      fullPath: '/erp/profile'
+      preLoaderRoute: typeof ErpProfileRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/messages': {
+      id: '/erp/messages'
+      path: '/messages'
+      fullPath: '/erp/messages'
+      preLoaderRoute: typeof ErpMessagesRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/logistique': {
+      id: '/erp/logistique'
+      path: '/logistique'
+      fullPath: '/erp/logistique'
+      preLoaderRoute: typeof ErpLogistiqueRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/finance': {
+      id: '/erp/finance'
+      path: '/finance'
+      fullPath: '/erp/finance'
+      preLoaderRoute: typeof ErpFinanceRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/factures': {
+      id: '/erp/factures'
+      path: '/factures'
+      fullPath: '/erp/factures'
+      preLoaderRoute: typeof ErpFacturesRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/employes': {
+      id: '/erp/employes'
+      path: '/employes'
+      fullPath: '/erp/employes'
+      preLoaderRoute: typeof ErpEmployesRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/depot': {
+      id: '/erp/depot'
+      path: '/depot'
+      fullPath: '/erp/depot'
+      preLoaderRoute: typeof ErpDepotRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/commandes': {
+      id: '/erp/commandes'
+      path: '/commandes'
+      fullPath: '/erp/commandes'
+      preLoaderRoute: typeof ErpCommandesRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/erp/clients': {
+      id: '/erp/clients'
+      path: '/clients'
+      fullPath: '/erp/clients'
+      preLoaderRoute: typeof ErpClientsRouteImport
+      parentRoute: typeof ErpRouteRoute
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface ErpRouteRouteChildren {
+  ErpClientsRoute: typeof ErpClientsRoute
+  ErpCommandesRoute: typeof ErpCommandesRoute
+  ErpDepotRoute: typeof ErpDepotRoute
+  ErpEmployesRoute: typeof ErpEmployesRoute
+  ErpFacturesRoute: typeof ErpFacturesRoute
+  ErpFinanceRoute: typeof ErpFinanceRoute
+  ErpLogistiqueRoute: typeof ErpLogistiqueRoute
+  ErpMessagesRoute: typeof ErpMessagesRoute
+  ErpProfileRoute: typeof ErpProfileRoute
+  ErpStockRoute: typeof ErpStockRoute
+  ErpIndexRoute: typeof ErpIndexRoute
+}
+
+const ErpRouteRouteChildren: ErpRouteRouteChildren = {
+  ErpClientsRoute: ErpClientsRoute,
+  ErpCommandesRoute: ErpCommandesRoute,
+  ErpDepotRoute: ErpDepotRoute,
+  ErpEmployesRoute: ErpEmployesRoute,
+  ErpFacturesRoute: ErpFacturesRoute,
+  ErpFinanceRoute: ErpFinanceRoute,
+  ErpLogistiqueRoute: ErpLogistiqueRoute,
+  ErpMessagesRoute: ErpMessagesRoute,
+  ErpProfileRoute: ErpProfileRoute,
+  ErpStockRoute: ErpStockRoute,
+  ErpIndexRoute: ErpIndexRoute,
+}
+
+const ErpRouteRouteWithChildren = ErpRouteRoute._addFileChildren(
+  ErpRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ErpRouteRoute: ErpRouteRouteWithChildren,
+  AccountRoute: AccountRoute,
+  AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
+  CategorySlugRoute: CategorySlugRoute,
+  ProductSlugRoute: ProductSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
