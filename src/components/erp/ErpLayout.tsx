@@ -5,7 +5,7 @@ import { ROLES, type Role } from "@/lib/erp/types";
 import {
   LayoutDashboard, Package, ShoppingCart, Warehouse, Truck, Users,
   FileText, Wallet, UserCog, MessageSquare, Bell, Menu, ChevronLeft,
-  User as UserIcon, AlertTriangle, Search,
+  User as UserIcon, AlertTriangle, Search, Sparkles,
 } from "lucide-react";
 
 type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; roles: Role[] };
@@ -13,12 +13,13 @@ type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboar
 const NAV: NavItem[] = [
   { to: "/erp", label: "Dashboard", icon: LayoutDashboard, roles: ["comptable", "admin"] },
   { to: "/erp/stock", label: "Stock", icon: Package, roles: ["commercial", "depot", "admin"] },
-  { to: "/erp/commandes", label: "Commandes", icon: ShoppingCart, roles: ["commercial", "vendeur", "admin"] },
+  { to: "/erp/commandes", label: "Commandes", icon: ShoppingCart, roles: ["commercial", "vendeur", "comptable", "admin"] },
   { to: "/erp/depot", label: "Dépôt", icon: Warehouse, roles: ["depot", "admin"] },
   { to: "/erp/logistique", label: "Logistique", icon: Truck, roles: ["depot", "admin"] },
   { to: "/erp/clients", label: "Clients", icon: Users, roles: ["vendeur", "admin"] },
-  { to: "/erp/factures", label: "Factures", icon: FileText, roles: ["vendeur", "admin"] },
+  { to: "/erp/factures", label: "Factures", icon: FileText, roles: ["vendeur", "comptable", "admin"] },
   { to: "/erp/finance", label: "Finance", icon: Wallet, roles: ["comptable", "admin"] },
+  { to: "/erp/insights", label: "Savoir plus (IA)", icon: Sparkles, roles: ["comptable", "admin"] },
   { to: "/erp/employes", label: "Employés", icon: UserCog, roles: ["admin"] },
   { to: "/erp/messages", label: "Messages", icon: MessageSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
   { to: "/erp/profile", label: "Profil", icon: UserIcon, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
