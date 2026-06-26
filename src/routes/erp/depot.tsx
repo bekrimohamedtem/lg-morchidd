@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useErp } from "@/lib/erp/store";
 import { DataTable } from "@/components/erp/DataTable";
 import { scanLabel } from "@/lib/ai.functions";
 import { useServerFn } from "@tanstack/react-start";
-import { Camera, ArrowDown, ArrowUp, Loader2 } from "lucide-react";
+import { Camera, ArrowDown, ArrowUp, Loader2, Warehouse } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/erp/depot")({ component: DepotPage });
@@ -13,19 +13,61 @@ function DepotPage() {
   const { stock, movements, adjustStock, upsertStock } = useErp();
   const [scanOpen, setScanOpen] = useState(false);
   const [adjustOpen, setAdjustOpen] = useState<{ id: string; type: "entrée" | "sortie" } | null>(null);
+  const [depotFilter, setDepotFilter] = useState<string>("Tous");
+
+  const depots = useMemo(() => {
+    const set = new Set(stock.map((s) => s.depot));
+    return ["Tous", ...Array.from(set)];
+  }, [stock]);
+
+  const filteredStock = depotFilter === "Tous" ? stock : stock.filter((s) => s.depot === depotFilter);
+  const filteredMoves = depotFilter === "Tous" ? movements : movements.filter((m) => m.depot === depotFilter);
+
+  const depotStats = useMemo(() => {
+    const stats = new Map<string, { count: number; units: number }>();
+    for (const s of stock) {
+      const cur = stats.get(s.depot) ?? { count: 0, units: 0 };
+      cur.count += 1;
+      cur.units += s.stock;
+      stats.set(s.depot, cur);
+    }
+    return Array.from(stats.entries());
+  }, [stock]);
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-wrap gap-3">
         <h1 className="text-2xl font-bold">Gestion du dépôt</h1>
         <button onClick={() => setScanOpen(true)} className="bg-[#A50034] text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
           <Camera className="h-4 w-4" /> Scanner étiquette (IA)
         </button>
       </div>
 
+      {/* Depot filter cards */}
+      <div className="bg-white rounded-2xl border border-slate-200 p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <Warehouse className="h-4 w-4 text-[#A50034]" />
+          <span className="text-sm font-semibold">Filtrer par dépôt</span>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {depots.map((d) => {
+            const stat = depotStats.find(([n]) => n === d);
+            const active = depotFilter === d;
+            return (
+              <button key={d} onClick={() => setDepotFilter(d)}
+                className={`px-4 py-2.5 rounded-xl text-sm font-semibold border-2 transition ${active ? "bg-[#A50034] text-white border-[#A50034]" : "bg-white text-slate-700 border-slate-200 hover:border-[#A50034]"}`}>
+                <div>{d}</div>
+                {stat && <div className={`text-[11px] mt-0.5 ${active ? "text-white/80" : "text-slate-500"}`}>{stat[1].count} réf. · {stat[1].units} unités</div>}
+                {d === "Tous" && <div className={`text-[11px] mt-0.5 ${active ? "text-white/80" : "text-slate-500"}`}>{stock.length} réf. · {stock.reduce((a, s) => a + s.stock, 0)} unités</div>}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <DataTable
-        title="Articles"
-        rows={stock}
+        title={`Articles — ${depotFilter}`}
+        rows={filteredStock}
         columns={[
           { key: "ref", header: "Réf.", render: (r) => <span className="font-mono text-xs">{r.ref}</span>, searchValue: (r) => r.ref },
           { key: "name", header: "Article", render: (r) => r.name, searchValue: (r) => r.name },
@@ -47,8 +89,8 @@ function DepotPage() {
       />
 
       <DataTable
-        title="Historique des mouvements"
-        rows={movements}
+        title={`Historique des mouvements — ${depotFilter}`}
+        rows={filteredMoves}
         columns={[
           { key: "date", header: "Date", render: (m) => new Date(m.date).toLocaleString("fr-DZ") },
           { key: "art", header: "Article", render: (m) => stock.find((s) => s.id === m.productId)?.name ?? m.productId },
