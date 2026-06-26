@@ -5,7 +5,8 @@ import { ROLES, type Role } from "@/lib/erp/types";
 import {
   LayoutDashboard, Package, ShoppingCart, Warehouse, Truck, Users,
   FileText, Wallet, UserCog, MessageSquare, Bell, Menu, ChevronLeft,
-  User as UserIcon, AlertTriangle, Search, Sparkles,
+  User as UserIcon, AlertTriangle, Search, Sparkles, MessagesSquare,
+
 } from "lucide-react";
 
 type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; roles: Role[] };
@@ -21,8 +22,10 @@ const NAV: NavItem[] = [
   { to: "/erp/finance", label: "Finance", icon: Wallet, roles: ["comptable", "admin"] },
   { to: "/erp/insights", label: "Savoir plus (IA)", icon: Sparkles, roles: ["comptable", "admin"] },
   { to: "/erp/employes", label: "Employés", icon: UserCog, roles: ["admin"] },
-  { to: "/erp/messages", label: "Messages", icon: MessageSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
+  { to: "/erp/chat", label: "Chat", icon: MessagesSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
+  { to: "/erp/messages", label: "Notes supérieures", icon: MessageSquare, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
   { to: "/erp/profile", label: "Profil", icon: UserIcon, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
+
 ];
 
 export function ErpLayout({ children }: { children: ReactNode }) {

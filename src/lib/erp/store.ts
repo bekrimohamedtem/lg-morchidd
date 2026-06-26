@@ -8,7 +8,7 @@ const ssrSafeStorage = () => {
   return window.localStorage;
 };
 import type {
-  Role, StockItem, Client, Order, Employee, Movement, Notification, AdminMessage, OrderItem,
+  Role, StockItem, Client, Order, Employee, Movement, Notification, AdminMessage, OrderItem, ChatMessage,
 } from "./types";
 import { seedStock, seedClients, seedOrders, seedEmployees, seedMovements, seedMessages } from "./seed";
 
@@ -21,6 +21,7 @@ type State = {
   movements: Movement[];
   notifications: Notification[];
   messages: AdminMessage[];
+  chats: ChatMessage[];
 };
 
 type Actions = {
@@ -41,9 +42,12 @@ type Actions = {
   // notif
   pushNotification: (n: Omit<Notification, "id" | "date" | "read">) => void;
   markAllRead: () => void;
-  // messages
+  // messages (notes supérieures)
   addMessage: (m: Omit<AdminMessage, "id" | "date">) => void;
+  // chat
+  sendChat: (conversationId: string, senderId: string, body: string) => void;
 };
+
 
 const newId = () => Math.random().toString(36).slice(2, 10);
 
@@ -58,6 +62,11 @@ export const useErp = create<State & Actions>()(
       movements: seedMovements,
       notifications: [],
       messages: seedMessages,
+      chats: [
+        { id: "seed-c1", conversationId: "group", senderId: "e-006", body: "Bienvenue dans le chat d'équipe LG-morchid 👋", date: new Date(Date.now() - 86400000).toISOString() },
+        { id: "seed-c2", conversationId: "group", senderId: "e-001", body: "Bonjour à tous, prêts pour la semaine !", date: new Date(Date.now() - 3600000).toISOString() },
+      ],
+
 
       setRole: (role) => set({ role }),
 
@@ -137,10 +146,19 @@ export const useErp = create<State & Actions>()(
         set((st) => ({
           messages: [{ id: newId(), date: new Date().toISOString(), ...m }, ...st.messages],
         })),
+
+      sendChat: (conversationId, senderId, body) =>
+        set((st) => ({
+          chats: [
+            ...st.chats,
+            { id: newId(), conversationId, senderId, body, date: new Date().toISOString() },
+          ],
+        })),
     }),
-    { name: "lg-morchid-erp", version: 1, storage: createJSONStorage(ssrSafeStorage), skipHydration: true },
+    { name: "lg-morchid-erp", version: 2, storage: createJSONStorage(ssrSafeStorage), skipHydration: true },
   ),
 );
+
 
 export const fmtDA = (n: number) =>
   new Intl.NumberFormat("fr-DZ", { style: "currency", currency: "DZD", maximumFractionDigits: 0 }).format(n);

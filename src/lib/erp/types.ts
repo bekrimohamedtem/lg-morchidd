@@ -79,3 +79,12 @@ export type AdminMessage = {
   urgency: "urgent" | "normal";
   date: string;
 };
+
+export type ChatMessage = {
+  id: string;
+  conversationId: string; // "group" or "dm:<employeeId-A>:<employeeId-B>" (sorted)
+  senderId: string;
+  body: string;
+  date: string;
+};
+
