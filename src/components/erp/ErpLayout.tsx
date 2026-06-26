@@ -11,8 +11,8 @@ import {
 type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; roles: Role[] };
 
 const NAV: NavItem[] = [
-  { to: "/erp", label: "Dashboard", icon: LayoutDashboard, roles: ["commercial", "depot", "vendeur", "comptable", "admin"] },
-  { to: "/erp/stock", label: "Stock", icon: Package, roles: ["commercial", "admin"] },
+  { to: "/erp", label: "Dashboard", icon: LayoutDashboard, roles: ["comptable", "admin"] },
+  { to: "/erp/stock", label: "Stock", icon: Package, roles: ["commercial", "depot", "admin"] },
   { to: "/erp/commandes", label: "Commandes", icon: ShoppingCart, roles: ["commercial", "vendeur", "admin"] },
   { to: "/erp/depot", label: "Dépôt", icon: Warehouse, roles: ["depot", "admin"] },
   { to: "/erp/logistique", label: "Logistique", icon: Truck, roles: ["depot", "admin"] },
