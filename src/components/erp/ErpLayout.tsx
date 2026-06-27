@@ -110,7 +110,7 @@ export function ErpLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="flex items-center gap-2 relative">
             <button onClick={() => { setOpenMsg((v) => !v); setOpenBell(false); }} className="relative p-2 rounded-full hover:bg-slate-100">
-              <MessageSquare className="h-5 w-5 text-slate-700" />
+              <StickyNote className="h-5 w-5 text-slate-700" />
               {urgentCount > 0 && (
                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-[#A50034]" />
               )}
