@@ -4,7 +4,7 @@ import { useErp } from "@/lib/erp/store";
 import { ROLES, type Role } from "@/lib/erp/types";
 import {
   LayoutDashboard, Package, ShoppingCart, Warehouse, Truck, Users,
-  FileText, Wallet, UserCog, MessageSquare, Bell, Menu, ChevronLeft,
+  FileText, Wallet, UserCog, Bell, Menu, ChevronLeft,
   User as UserIcon, AlertTriangle, Search, Sparkles, MessagesSquare,
   StickyNote,
 } from "lucide-react";
